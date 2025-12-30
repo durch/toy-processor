@@ -1,0 +1,24 @@
+[package]
+name = "toy-processor-fuzz"
+version = "0.0.0"
+publish = false
+edition = "2024"
+
+[package.metadata]
+cargo-fuzz = true
+
+[dependencies]
+libfuzzer-sys = "0.4.10"
+arbitrary = { version = "1.4.2", features = ["derive"] }
+csv = "1.4.0"
+rust_decimal = { version = "1.39", features = ["serde-with-str"] }
+
+[dependencies.toy-processor]
+path = ".."
+
+[[bin]]
+name = "transaction_processor"
+path = "fuzz_targets/transaction_processor.rs"
+test = false
+doc = false
+bench = false
